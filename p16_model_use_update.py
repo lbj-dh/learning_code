@@ -1,0 +1,25 @@
+import torchvision
+from torch import nn
+
+#dataset = torchvision.datasets.ImageNet("./data/train",split="train",transform=torchvision.transforms.ToTensor())
+
+
+vgg16_false = torchvision.models.vgg16(pretrained=False)
+vgg16_true = torchvision.models.vgg16(pretrained=True)
+
+print(vgg16_false)
+
+train_data = torchvision.datasets.CIFAR10(root='./data', train=True, download=True, transform=torchvision.transforms.ToTensor())
+
+#vgg16_false.add_module("add_linear",nn.Linear(1000,10))
+
+vgg16_false.classifier.add_module("7",nn.Linear(1000,10))
+
+print(vgg16_false)
+
+
+print(vgg16_true)
+
+vgg16_true.classifier[6] = nn.Linear(4096,10)
+
+print(vgg16_true)
