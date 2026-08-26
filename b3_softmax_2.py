@@ -16,7 +16,7 @@ def init_weights(m):
 net.apply(init_weights)
 loss = nn.CrossEntropyLoss()
 
-trainer = torch.optim.SGD(net.parameters(),lr=0.3)
+trainer = torch.optim.SGD(net.parameters(),lr=0.1)
 num_epochs = 10
 d2l.train_ch3(net,train_iter,test_iter,loss,num_epochs,trainer)
 plt.show()
